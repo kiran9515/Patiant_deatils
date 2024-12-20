@@ -1,6 +1,6 @@
 # Import necessary packages
 import streamlit as st
-from snowflake.snowpark.context import get_active_session
+from snowflake.snowpark.functions import col
 
 # Page configuration for better appearance
 st.set_page_config(
@@ -18,7 +18,9 @@ st.markdown(
 )
 
 # Get the current Snowflake session
-session = get_active_session()
+# session = get_active_session()
+cnx = st.connection("snowflake")
+session = cnx.session()
 
 # Input section with placeholder for better guidance
 Patient_id_picker = st.text_input(
